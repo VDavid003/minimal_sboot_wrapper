@@ -1,0 +1,5 @@
+kernel
+dtb
+*.o
+linker.lds
+wrapped_kernel
