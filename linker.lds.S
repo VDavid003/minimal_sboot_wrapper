@@ -3,7 +3,7 @@ OUTPUT_ARCH(aarch64)
 TARGET(binary)
 
 INPUT(KERNEL_PATH)
-INPUT(DTB_PATH)
+INPUT(tmp.dtb)
 
 SECTIONS
 {
@@ -13,7 +13,7 @@ SECTIONS
 
     .dtb ALIGN(0x1000) : {
         dtb = .;
-        DTB_PATH
+        tmp.dtb
     }
 
     .kernel ALIGN(0x1000) : {

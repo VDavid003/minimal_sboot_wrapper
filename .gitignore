@@ -3,3 +3,5 @@ dtb
 *.o
 linker.lds
 wrapped_kernel
+cmdline_value
+tmp.dtb
