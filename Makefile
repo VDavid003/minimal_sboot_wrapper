@@ -27,6 +27,9 @@ wrapper.o: $(OBJ) linker.lds tmp.dtb
 linker.lds: linker.lds.S $(KERNEL_PATH)
 	$(CPP) $< -DKERNEL_PATH=$(KERNEL_PATH) -DDTB_PATH=$(DTB_PATH) -P -o $@
 
+%.o: %.S defs_value
+	$(CC) $(DEFS) -c -o $@ $<
+
 %.o: %.c defs_value
 	$(CC) $(DEFS) -c -o $@ $<
 
