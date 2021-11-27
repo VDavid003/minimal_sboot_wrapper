@@ -3,6 +3,9 @@
  * S-Boot directly jumps to the head, so this is where it all starts.
  * Kernel and DTB are embedded inside the wrapper at link time.
  */
+#ifdef POWER_KEY_BOOT
+    bl wait_for_power_key
+#endif
     adr	x4, kernel
     adr	x0, dtb
     /*

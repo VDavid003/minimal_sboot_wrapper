@@ -14,9 +14,10 @@ CCPREFIX: Prefix to compiler commands. Default: "aarch64-linux-gnu-"
 KERNEL_PATH: Path to the kernel image. Default: "kernel"
 DTB_PATH: Path to the dtb. Default: "dtb"
 CMDLINE: Command line passed to kernel. Default: "clk_ignore_unused"
+POWER_KEY_BOOT: Only boot when the power key is pressed.
 
 Example command:
-`make CMDLINE="clk_ignore_unused fbcon=rotate:1" KERNEL_PATH=/path/to/kernel/arch/arm64/Image DTB_PATH=/path/to/kernel/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dtb`
+`make POWER_KEY_BOOT=1 CMDLINE="clk_ignore_unused fbcon=rotate:1" KERNEL_PATH=/path/to/kernel/arch/arm64/Image DTB_PATH=/path/to/kernel/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dtb`
 
 **Usage:**
 The resulting "wrapped_kernel" can be used instead of a kernel in a
