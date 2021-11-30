@@ -31,7 +31,7 @@ linker.lds: linker.lds.S $(KERNEL_PATH)
 	$(CC) $(DEFS) -c -o $@ $<
 
 %.o: %.c defs_value
-	$(CC) $(DEFS) -c -o $@ $<
+	$(CC) -fno-builtin $(DEFS) -c -o $@ $<
 
 tmp.dtb: $(DTB_PATH) cmdline_value
 	( dtc -O dts $(DTB_PATH) && echo "/ { chosen { bootargs = \"$(CMDLINE)\"; }; };" ) | dtc -O dtb -o $@
