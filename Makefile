@@ -28,10 +28,10 @@ linker.lds: linker.lds.S $(KERNEL_PATH)
 	$(CPP) $< -DKERNEL_PATH=$(KERNEL_PATH) -DDTB_PATH=$(DTB_PATH) -P -o $@
 
 %.o: %.S defs_value
-	$(CC) -O3 $(DEFS) -c -o $@ $<
+	$(CC) $(DEFS) -c -o $@ $<
 
 %.o: %.c defs_value
-	$(CC) -O3 $(DEFS) -c -o $@ $<
+	$(CC) $(DEFS) -c -o $@ $<
 
 tmp.dtb: $(DTB_PATH) cmdline_value
 	( dtc -O dts $(DTB_PATH) && echo "/ { chosen { bootargs = \"$(CMDLINE)\"; }; };" ) | dtc -O dtb -o $@
