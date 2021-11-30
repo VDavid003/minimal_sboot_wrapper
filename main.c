@@ -1,3 +1,5 @@
+extern void boot_kernel(void* dtb, void* x1, void* x2, void* x3, void* kernel);
+
 #ifdef POWER_KEY_BOOT
 void wait_for_power_key() {
 	//0x11CB0064: gpa1 pins
@@ -11,3 +13,10 @@ void wait_for_power_key() {
 	} while (value & 128);
 }
 #endif
+
+void main(void* dtb, void* kernel) {
+#ifdef POWER_KEY_BOOT
+	wait_for_power_key();
+#endif
+	boot_kernel(dtb, 0, 0, 0, kernel);
+}

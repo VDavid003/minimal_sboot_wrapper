@@ -14,7 +14,7 @@ ifdef POWER_KEY_BOOT
 DEFS += -DPOWER_KEY_BOOT
 endif
 
-OBJ=boot.o powerkey.o
+OBJ=boot.o main.o
 
 .PHONY: rebuild clean
 
@@ -28,10 +28,10 @@ linker.lds: linker.lds.S $(KERNEL_PATH)
 	$(CPP) $< -DKERNEL_PATH=$(KERNEL_PATH) -DDTB_PATH=$(DTB_PATH) -P -o $@
 
 %.o: %.S defs_value
-	$(CC) $(DEFS) -c -o $@ $<
+	$(CC) -O3 $(DEFS) -c -o $@ $<
 
 %.o: %.c defs_value
-	$(CC) $(DEFS) -c -o $@ $<
+	$(CC) -O3 $(DEFS) -c -o $@ $<
 
 tmp.dtb: $(DTB_PATH) cmdline_value
 	( dtc -O dts $(DTB_PATH) && echo "/ { chosen { bootargs = \"$(CMDLINE)\"; }; };" ) | dtc -O dtb -o $@
