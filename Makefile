@@ -34,7 +34,7 @@ linker.lds: linker.lds.S $(KERNEL_PATH)
 	$(CC) -fno-builtin $(DEFS) -c -o $@ $<
 
 tmp.dtb: $(DTB_PATH) cmdline_value
-	( dtc -O dts $(DTB_PATH) && echo "/ { chosen { bootargs = \"$(CMDLINE)\"; }; };" ) | dtc -O dtb -o $@
+	( dtc -O dts $(DTB_PATH) && echo "/ { chosen { bootargs = \"$(CMDLINE)\"; linux,initrd-start = <0x89000000>; linux,initrd-end = <0x890FFFFF>; }; };" ) | dtc -O dtb -o $@
 
 defs_value: rebuild
 	@echo $(DEFS) > defs.tmp
